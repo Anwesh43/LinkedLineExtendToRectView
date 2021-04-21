@@ -206,4 +206,13 @@ class LineExtendToRectView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : LineExtendToRectView {
+            val view : LineExtendToRectView = LineExtendToRectView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
