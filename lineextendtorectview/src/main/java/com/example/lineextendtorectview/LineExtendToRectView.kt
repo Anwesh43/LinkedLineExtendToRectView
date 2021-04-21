@@ -181,4 +181,27 @@ class LineExtendToRectView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineExtendToRectView) {
+
+        private val animator : Animator = Animator(view)
+        private val letr : LineExtendToRect = LineExtendToRect(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            letr.draw(canvas, paint)
+            animator.animate {
+                letr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            letr.startUdpating {
+                animator.start()
+            }
+        }
+    }
 }
